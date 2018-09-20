@@ -4,13 +4,11 @@
 
 1.  Download it from [here](https://moodle.ece.ufrgs.br/mod/url/view.php?id=676).
 
-2.  Get it into your machine.
+2.  Get it into your machine (inside *computer/opt*).
 
 ```
 $ sudo su
-$ cd /home/<USERNAME>
-$ mkdir opt
-$ cd opt
+$ cd /opt
 $ tar -xjf iss-iot-linux_03-24-16.tar.bz2
 $ rm iss-iot-linux_03-24-16.tar.bz2
 ```
@@ -41,4 +39,14 @@ $ export CROSS_COMPILE=
 
 ```
 
-##
+## Useful commands
+
+```
+$ ssh <USERNAME_GALILEO>@<IP_GALILEO_WITHOUT_REPEATED_ZEROS>
+
+```
+```
+$ scp <FILE_IN_HOST> <USERNAME_GALILEO>@<IP_GALILEO_WITHOUT_REPEATED_ZEROS>:
+
+```
+
