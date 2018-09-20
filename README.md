@@ -1,4 +1,25 @@
-## Set Up from scratch of Galileo on a computer
+
+## Commands for setting Galileo up
+
+### Connect to the Galileo as a super user
+
+```
+$ ssh root@<IP_GALILEO_WITHOUT_REPEATED_ZEROS>
+$ passwd
+$ useradd -c <LOGIN_NEW_USER> -s /bin/bash -m <LOGIN_NEW_USER>
+$ passwd <LOGIN_NEW_USER>
+$ exit
+```
+
+### Log into Galileo with the created user (LOGIN_NEW_USER)
+
+```
+$ ssh <LOGIN_NEW_USER>@<IP_GALILEO_WITHOUT_REPEATED_ZEROS>
+$ echo "export PATH=.:$PATH" >> .profile
+$ exit
+```
+
+## Set up Galileo's system on a host machine and cross compiler
 
 ### Install the Intel System Studio IoT Edition
 
@@ -49,4 +70,9 @@ $ ssh <USERNAME_GALILEO>@<IP_GALILEO_WITHOUT_REPEATED_ZEROS>
 $ scp <FILE_IN_HOST> <USERNAME_GALILEO>@<IP_GALILEO_WITHOUT_REPEATED_ZEROS>:
 
 ```
+
+
+
+
+
 
