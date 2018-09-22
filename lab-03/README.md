@@ -7,7 +7,7 @@ echo -n "46" > /sys/class/gpio/export
 
 ### GPIO setup
 
-In order to set up the GPIOs for each experiment, you need to have in your **root** user on Galileo the files *eng10032lab03_X*, which can be found on the [init folder](/init.d).
+In order to set up the GPIOs for each experiment, you need to have in your **root** user on Galileo the files *eng10032lab03_X*, which can be found on the [init folder](/init_d/).
 Execute the following commands on your root user on Galileo:
 
 ```
