@@ -51,6 +51,15 @@ $ ln -s devkit-x86 1.7.2
 $ INSTALL_DIR=`pwd` sdk-relocator/relocate_sdk.sh
 ```
 
+#### Set up cross compiler
+
+For being able to compile programs in your host machine to execute on Galileo, you need to run the script [iss_setup](/scripts/iss_setup.sh) everytime a new console is opened:
+
+```
+$ source iss_setup.sh
+```
+
+
 ### Clean up cross compiler
 
 Since the cross compiler has been previously set on your the computer, if you try to use the normal compiler it won't work. For this purpose, just type on the terminal the following command:
@@ -62,10 +71,13 @@ $ export CROSS_COMPILE=
 
 ## Useful commands
 
+#### Establish connection with Galileo
 ```
 $ ssh <USERNAME_GALILEO>@<IP_GALILEO_WITHOUT_REPEATED_ZEROS>
 
 ```
+
+#### Copy a file into Galileo (mind the colon at the end of the command!)
 ```
 $ scp <FILE_IN_HOST> <USERNAME_GALILEO>@<IP_GALILEO_WITHOUT_REPEATED_ZEROS>:
 
