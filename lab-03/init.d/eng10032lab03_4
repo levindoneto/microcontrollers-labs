@@ -1,0 +1,79 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          eng10032lab03_3
+# Required-Start:    
+# Should-Start:      
+# Required-Stop:     
+# Default-Start:     S
+# Default-Stop:
+# Short-Description: Configures GPIO for Lab 03.
+# Description:       Configures GPIO for Lab 03.
+### END INIT INFO
+
+case "$1" in
+    start|restart|force-reload)
+	if [ ! -d /sys/class/gpio/gpio64 ] ; then
+	    echo -n "64" > /sys/class/gpio/export
+	fi
+	echo -n "out" > /sys/class/gpio/gpio64/direction
+	echo -n "0" > /sys/class/gpio/gpio64/value
+	
+	if [ ! -d /sys/class/gpio/gpio76 ] ; then
+	    echo -n "76" > /sys/class/gpio/export
+	fi
+	echo -n "out" > /sys/class/gpio/gpio76/direction
+	echo -n "0" > /sys/class/gpio/gpio76/value
+
+	if [ ! -d /sys/class/gpio/gpio62 ] ; then
+	    echo -n "62" > /sys/class/gpio/export
+	fi
+	echo -n "out" > /sys/class/gpio/gpio62/direction
+	chgrp gpio /sys/class/gpio/gpio62/value
+	chmod g+rw /sys/class/gpio/gpio62/value
+
+	if [ ! -d /sys/class/gpio/gpio13 ] ; then
+	    echo -n "13" > /sys/class/gpio/export
+	fi
+	echo -n "in" > /sys/class/gpio/gpio13/direction
+	chgrp gpio /sys/class/gpio/gpio13/value
+	chmod g+r /sys/class/gpio/gpio13/value
+	
+	if [ ! -d /sys/class/gpio/gpio34 ] ; then
+	    echo -n "34" > /sys/class/gpio/export
+	fi
+	echo -n "out" > /sys/class/gpio/gpio34/direction
+	echo -n "1" > /sys/class/gpio/gpio34/value
+
+	if [ ! -d /sys/class/gpio/gpio35 ] ; then
+	    echo -n "35" > /sys/class/gpio/export
+	fi
+	echo -n "out" > /sys/class/gpio/gpio35/direction
+	echo -n "0" > /sys/class/gpio/gpio35/value
+	
+	if [ ! -d /sys/class/gpio/gpio77 ] ; then
+	    echo -n "77" > /sys/class/gpio/export
+	fi
+#	echo -n "out" > /sys/class/gpio/gpio77/direction
+	echo -n "0" > /sys/class/gpio/gpio77/value
+	;;
+    stop)
+    	echo -n "in" > /sys/class/gpio/gpio62/direction
+    	echo -n "62" > /sys/class/gpio/unexport
+	echo -n "76" > /sys/class/gpio/unexport
+	echo -n "64" > /sys/class/gpio/unexport
+    	echo -n "13" > /sys/class/gpio/unexport
+	echo -n "34" > /sys/class/gpio/unexport
+	echo -n "35" > /sys/class/gpio/unexport
+	echo -n "77" > /sys/class/gpio/unexport
+	;;
+    status)
+    	ls -d /sys/class/gpio/gpio*
+	;;
+    *)
+	echo -n "Usage: $0 " 
+	echo "{start|stop|restart|force-reload|status}"
+	exit 1
+	;;
+esac
+
+exit 0
