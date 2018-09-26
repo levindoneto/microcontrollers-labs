@@ -12,7 +12,7 @@ Execute the following commands on your root user on Galileo:
 
 ```
 $ groupadd -r gpio
-$ groupmems -g gpio -a lgtneto
+$ groupmems -g gpio -a <USERNAME>
 $ cp ~/eng10032lab03_X /etc/init.d
 $ chmod +x /etc/init.d/eng10032lab03_1
 $ update-rc.d eng10032lab03_1 defaults
