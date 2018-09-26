@@ -1,4 +1,4 @@
-## Lab 03
+## LAB 03 | gpio
 
 ### How to export a pin
 ```
