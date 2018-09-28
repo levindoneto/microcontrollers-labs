@@ -23,6 +23,27 @@ When a PWM channel *X* is exported, the following files are created in `/sys/cla
 
 ## Experiments
 
-### 
-[Watch it]().
+### Add a pwm group and configure init script in the root
+```
+$ groupadd -r pwm
+$ groupmems -g pwm -a <USERNAME>
+$ cp ~/eng10032lab06_1 /etc/init.d
+$ chmod +x /etc/init.d/eng10032lab06_1
+$ update-rc.d eng10032lab06_1 defaults
+$ reboot
+```
+
+#### Fadding
+```
+$ ./fadding
+```
+[Watch it](https://photos.app.goo.gl/nGs9uTQNg8xFs4s69).
+
+#### Servo
+The voltage in the shield shall be changed to 5V first.
+```
+$ ./servo <ANGLE_DEGREES>
+```
+[Watch it](
+https://photos.app.goo.gl/h7B2vzk4BKxTUd5y7).
 

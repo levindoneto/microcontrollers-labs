@@ -26,46 +26,45 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-
 #include <galileo2io.h>
 
 int main(int argc,char * argv[])
 {
-        int fd;
-        int i;
-        char str[80];
+    int fd;
+    int i;
+    char str[80];
 
-        pputs("/sys/class/pwm/pwmchip0/device/pwm_period","1000000");
-        
-        if((fd=open("/sys/class/pwm/pwmchip0/pwm1/duty_cycle",O_WRONLY)) < 0)
-        {
-                perror("Opening duty_cycle:");
-                return -1;
-        }
-        //Seta duty cycle pra zero
-        write(fd,"0\n",2);
-        
-        //Dá enable
-        pputs("/sys/class/pwm/pwmchip0/pwm1/enable","1");
+    pputs("/sys/class/pwm/pwmchip0/device/pwm_period","1000000");
+    
+    if((fd=open("/sys/class/pwm/pwmchip0/pwm1/duty_cycle",O_WRONLY)) < 0)
+    {
+    	perror("Opening duty_cycle:");
+        return -1;
+    }
+    // Set duty cycle to zero
+    write(fd,"0\n",2);
+    
+    // Enable it
+    pputs("/sys/class/pwm/pwmchip0/pwm1/enable","1");
 
-        //1.000.000 nanossegundos = 1 milissegundo
-        //100.000 nanossegundos = 0,1 milissegundo
-        for(i=0;i < 1000000;i+=100000)
-        {
-                //A cada 0,1 milis
-                lseek(fd,0,SEEK_SET);
-                //Escreve i no formato integer no buffer str
-                snprintf(str,sizeof str,"%d\n",i);
-                //Escreve o buffer no arquivo do duuty-cycle
-                write(fd,str,strlen(str));
+    // 1.000.000 nanoseconds = 1 milisecond
+    // 100.000 nanoseconds = 0,1 milisecond
+    for(i=0;i < 1000000;i+=100000)
+    {
+        // Every 0.1ms
+        lseek(fd,0,SEEK_SET);
+        // Write i as an integer into the str buffer
+        snprintf(str,sizeof str,"%d\n",i);
+        // Write the buffer into the duty cycle file
+        write(fd,str,strlen(str));
 
-                printf("%d\n",i);
-                sleep(1);
-        }
-        
-        close(fd);
-        //Desabilita o pwm
-        pputs("/sys/class/pwm/pwmchip0/pwm1/enable","0");        
-       
-        return 0;
+        printf("%d\n",i);
+        sleep(1);
+    }
+    
+    close(fd);
+    // Deactivate PWM
+    pputs("/sys/class/pwm/pwmchip0/pwm1/enable","0");        
+   
+    return 0;
 }
