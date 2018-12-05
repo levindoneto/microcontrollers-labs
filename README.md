@@ -29,6 +29,8 @@ $ exit
 
 ```
 $ sudo su
+$ cd ~/Downloads
+$ cp iss-iot-linux_03-24-16.tar.bz2 /opt
 $ cd /opt
 $ tar -xjf iss-iot-linux_03-24-16.tar.bz2
 $ rm iss-iot-linux_03-24-16.tar.bz2
